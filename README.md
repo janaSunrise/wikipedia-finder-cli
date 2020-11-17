@@ -14,6 +14,8 @@ Execute the following commands to get started:
 pipenv install
 pipenv shell
 
+cd src/
+
 python app.py --help
 ```
 
