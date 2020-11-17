@@ -10,4 +10,4 @@ click = "*"
 [dev-packages]
 
 [scripts]
-start = "python -m finder"
+start = "python src/app.py"
