@@ -2,11 +2,7 @@
 
 from click import command, echo, group
 
-from scraper import _get_json
-
-@command()
-def hello():
-    echo('Hello World!')
+from parser import wiki_random
 
 @group()
 def cli():
@@ -14,8 +10,8 @@ def cli():
 
 @cli.command()
 def random():
-    pass
+    echo(f"A random interesting topic is {wiki_random()}")
 
 
 if __name__ == '__main__':
-    hello()
+    cli()
