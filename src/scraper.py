@@ -2,8 +2,6 @@
 
 import requests
 
-# test variable
-query = "adolf hitler"
 lang = "en"
 
 base_url = f"https://{lang}.wikipedia.org/w/api.php"
@@ -12,7 +10,6 @@ base_url = f"https://{lang}.wikipedia.org/w/api.php"
 def _get_json(params):
 
     params["action"] = "query"
-    params["titles"] = query.replace(" ", "_")
     params["format"] = "json"
     params["formatversion"] = "2"  # Cleaner json results
     params["prop"] = "extracts"  # Include extract in returned results
