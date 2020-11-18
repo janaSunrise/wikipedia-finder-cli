@@ -1,16 +1,25 @@
 #!/usr/bin/env python3
 
+import html2text
+
 from scraper import _get_json
+
+handler = html2text.HTML2Text()
+handler.ignore_images = True
+handler.ignore_links = True
+handler.bypass_tables = True
 
 def wiki_random():
     request = _get_json("/page/random/title")
 
     return request["items"][0]["title"]
 
+
 def wiki_random_summary():
     request = _get_json("/page/random/summary")
 
-    return request["titles"]["display"], request["extract"]
+    return request["titles"]["display"], handler.handle(request["extract"])
+
 
 def wiki_search(query, results=5):
     params = {
@@ -33,6 +42,7 @@ def wiki_search(query, results=5):
 
     return list(search_results)
 
+
 def wiki_languages():
     response = _get_json(
         {
@@ -48,6 +58,7 @@ def wiki_languages():
         lang_string += f"{lang['code']}: {lang['name']}\n"
 
     return lang_string
+
 
 def wiki_suggest(query):
     params = {
