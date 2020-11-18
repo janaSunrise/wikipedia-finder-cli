@@ -14,6 +14,7 @@ def wiki():
     pass
 
 @wiki.command()
+@option('--summary', default=False, help="Get the summary of the random article along with title")
 def random():
     echo(f"A random interesting topic is {wiki_random()}")
 
