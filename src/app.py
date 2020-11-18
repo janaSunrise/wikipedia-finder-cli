@@ -8,8 +8,6 @@ from parser import (
     wiki_random,
     wiki_random_summary,
     wiki_summary,
-    wiki_languages,
-    wiki_search,
     wiki_suggest,
     pdf_download,
 )
@@ -31,19 +29,6 @@ def random(summary):
         )
     else:
         echo(f"A random interesting topic is {wiki_random().replace('_', ' ')}")
-
-@wiki.command(help="Shows all the languages that wikipedia supports.")
-def languages():
-    echo(wiki_languages())
-
-@wiki.command(help="Perform a search to find for various articles.")
-@option('--query', prompt="The query to search in wikipedia", help="The query to search in wikipedia")
-@option('--results', default=5, help="The number of results to display")
-def search(query, results):
-    res = wiki_search(query, results)
-    echo(
-        "The results for the search are:\n\n" + '\n'.join(res)
-    )
 
 @wiki.command(help="Get the summary of an article, by searching for it.")
 @option('--query', prompt="The query to search in wikipedia", help="The query to search in wikipedia")

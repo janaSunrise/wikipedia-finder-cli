@@ -26,6 +26,7 @@ def wiki_random_summary():
 
     return request["displaytitle"], handler.handle(request["extract"]).replace("\n", " ")
 
+
 def wiki_summary(query):
     request = _get_json(f"/page/summary/{query}?redirect=true")
 
@@ -33,45 +34,6 @@ def wiki_summary(query):
         return "Article Not found!"
 
     return request["displaytitle"], request["extract"], request["content_urls"]["desktop"]["page"]
-
-
-def wiki_search(query, results=5):
-    params = {
-        'list': 'search',
-        'srprop': '',
-        'srlimit': results,
-        'limit': results,
-        'srsearch': query
-    }
-
-    raw_results = _get_json(params)
-
-    if 'error' in raw_results:
-        if raw_results['error']['info'] in ('HTTP request timed out.', 'Pool queue is full'):
-            raise Exception(query)
-        else:
-            raise Exception(raw_results['error']['info'])
-
-    search_results = (result['title'] for result in raw_results['query']['search'])
-
-    return list(search_results)
-
-
-def wiki_languages():
-    response = _get_json(
-        {
-            'meta': 'siteinfo',
-            'siprop': 'languages'
-        }
-    )
-
-    languages = response['query']['languages']
-
-    lang_string = ""
-    for lang in languages:
-        lang_string += f"{lang['code']}: {lang['name']}\n"
-
-    return lang_string
 
 
 def wiki_suggest(query):
@@ -82,6 +44,7 @@ def wiki_suggest(query):
 
     page = choice(request["pages"])
     return page["displaytitle"], page["extract"], page["content_urls"]["desktop"]["page"]
+
 
 def pdf_download(query):
     request = requests.get(f"{base_url}/page/pdf/{query}")
