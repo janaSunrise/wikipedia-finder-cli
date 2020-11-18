@@ -10,18 +10,18 @@ from parser import (
 )
 
 @group()
-def cli():
+def wiki():
     pass
 
-@cli.command()
+@wiki.command()
 def random():
     echo(f"A random interesting topic is {wiki_random()}")
 
-@cli.command()
+@wiki.command()
 def languages():
     echo(wiki_languages())
 
-@cli.command()
+@wiki.command()
 @option('--query', prompt="The query to search in wikipedia", help="The query to search in wikipedia")
 @option('--results', default=5, help="The number of results to display")
 def search(query, results):
@@ -30,7 +30,7 @@ def search(query, results):
         "The results for the search are:\n\n" + '\n'.join(res)
     )
 
-@cli.command()
+@wiki.command()
 @option('--query', prompt="The query to search in wikipedia", help="The query to search in wikipedia")
 def suggestion(query):
     res = wiki_suggest(query)
@@ -41,4 +41,4 @@ def suggestion(query):
 
 
 if __name__ == '__main__':
-    cli()
+    wiki()
