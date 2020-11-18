@@ -1,13 +1,19 @@
 #!/usr/bin/env python3
 
 import html2text
+import requests
 
-from scraper import _get_json
+from scraper import _get_json, base_url
+
+from random import choice
 
 handler = html2text.HTML2Text()
 handler.ignore_images = True
 handler.ignore_links = True
 handler.bypass_tables = True
+handler.ignore_emphasis = True
+handler.escape_snob = True
+handler.escape_html = True
 
 def wiki_random():
     request = _get_json("/page/random/title")
@@ -18,7 +24,15 @@ def wiki_random():
 def wiki_random_summary():
     request = _get_json("/page/random/summary")
 
-    return request["titles"]["display"], handler.handle(request["extract"])
+    return request["displaytitle"], handler.handle(request["extract"]).replace("\n", " ")
+
+def wiki_summary(query):
+    request = _get_json(f"/page/summary/{query}?redirect=true")
+
+    if "detail" in request:
+        return "Article Not found!"
+
+    return request["displaytitle"], request["extract"], request["content_urls"]["desktop"]["page"]
 
 
 def wiki_search(query, results=5):
@@ -61,20 +75,18 @@ def wiki_languages():
 
 
 def wiki_suggest(query):
-    params = {
-        'list': 'search',
-        'srinfo': 'suggestion',
-        'srprop': '',
-    }
-    params['srsearch'] = query
+    request = _get_json(f"/page/related/{query}")
 
-    raw_result = _get_json(params)
+    if "detail" in request:
+        return "No suggestion found!"
 
-    titles = []
-    if raw_result["query"]["search"]:
-        for search in raw_result["query"]["search"]:
-            titles.append(search["title"])
+    page = choice(request["pages"])
+    return page["displaytitle"], page["extract"], page["content_urls"]["desktop"]["page"]
 
-        return titles
+def pdf_download(query):
+    request = requests.get(f"{base_url}/page/pdf/{query}")
 
-    return None
+    if "detail" in request:
+        return "No such page found!"
+
+    return request.content

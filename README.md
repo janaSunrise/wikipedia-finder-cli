@@ -22,7 +22,7 @@ python app.py --help
 
 ### TODOs Planned
 
-- [ ] Add summary command
+- [x] Add summary command
 - [ ] Add reference link command
 - [ ] Add section display command
 
