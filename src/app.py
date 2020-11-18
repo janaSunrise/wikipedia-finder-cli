@@ -10,6 +10,7 @@ from parser import (
     wiki_summary,
     wiki_suggest,
     pdf_download,
+    on_this_day,
 )
 
 @group()
@@ -75,6 +76,24 @@ def pdf(query):
 
         echo(f"File saved as {query.replace(' ', '_')}.pdf")
 
+@wiki.command(help="Get an incident on the specified date using the flags.")
+@option('--year', type=int, prompt="The year of the incident", help="The year of the incident to be searched")
+@option('--month', type=int, prompt="The month of the incident", help="The month of the incident to be searched")
+@option('--day', type=int, prompt="The day of the incident", help="The day of the incident to be searched")
+def onthisday(year, month, day):
+    res = on_this_day(year, month, day)
+
+    if isinstance(res, str):
+        echo(f"ERROR OCCURED! {res}")
+    else:
+        title, summary, link = res
+        echo(
+            dedent(f"""
+            {title}\n
+            {summary}\n
+            Read more here: {link}
+            """)
+        )
 
 if __name__ == '__main__':
     wiki()

@@ -53,3 +53,13 @@ def pdf_download(query):
         return "No such page found!"
 
     return request.content
+
+def on_this_day(year, month, day):
+    request = _get_json(f"/feed/featured/{year}/{month}/{day}")
+
+    if "detail" in request:
+        return request["detail"]
+
+    page = choice(request["onthisday"][0]["pages"])
+
+    return page["displaytitle"], page["extract"], page["content_urls"]["desktop"]["page"]

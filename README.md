@@ -22,8 +22,9 @@ python app.py --help
 
 ### TODOs Planned
 
-- [x] Add summary command
-- [ ] Add reference link command
-- [ ] Add section display command
+- [ ] Cover `/feed/onthisday/{type}/{mm}/{dd}`
+- [ ] Cover `/page/media-list/{title}`
+- [ ] Cover `/page/html/{title}`
+- [ ] Cover `/page/segments/{title}`
 
 Made by Sunrit Jana with ❤️
