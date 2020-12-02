@@ -4,7 +4,7 @@ from textwrap import dedent
 
 from click import echo, group, option
 
-from parser import (
+from wikiparser import (
     wiki_random,
     wiki_random_summary,
     wiki_summary,

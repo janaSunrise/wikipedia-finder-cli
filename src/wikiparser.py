@@ -4,6 +4,7 @@ import html2text
 import requests
 
 from scraper import _get_json, base_url
+from utils import remove_italics
 
 from random import choice
 
@@ -18,13 +19,13 @@ handler.escape_html = True
 def wiki_random():
     request = _get_json("/page/random/title")
 
-    return request["items"][0]["title"]
+    return remove_italics(request["items"][0]["title"])
 
 
 def wiki_random_summary():
     request = _get_json("/page/random/summary")
 
-    return request["displaytitle"], handler.handle(request["extract"]).replace("\n", " ")
+    return remove_italics(request["displaytitle"]), handler.handle(request["extract"]).replace("\n", " ")
 
 
 def wiki_summary(query):
@@ -33,7 +34,7 @@ def wiki_summary(query):
     if "detail" in request:
         return "Article Not found!"
 
-    return request["displaytitle"], request["extract"], request["content_urls"]["desktop"]["page"]
+    return remove_italics(request["displaytitle"]), request["extract"], request["content_urls"]["desktop"]["page"]
 
 
 def wiki_suggest(query):
@@ -43,7 +44,7 @@ def wiki_suggest(query):
         return "No suggestion found!"
 
     page = choice(request["pages"])
-    return page["displaytitle"], page["extract"], page["content_urls"]["desktop"]["page"]
+    return remove_italics(page["displaytitle"]), page["extract"], page["content_urls"]["desktop"]["page"]
 
 
 def pdf_download(query):
@@ -62,4 +63,4 @@ def on_this_day(year, month, day):
 
     page = choice(request["onthisday"][0]["pages"])
 
-    return page["displaytitle"], page["extract"], page["content_urls"]["desktop"]["page"]
+    return remove_italics(page["displaytitle"]), page["extract"], page["content_urls"]["desktop"]["page"]
