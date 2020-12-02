@@ -6,7 +6,7 @@ This is a utility based Wikipedia Command line program, That helps you traverse 
 
 - `Requests`: Fetch all the data by scraping JSON Response from the API
 - `Click`:  A python framework to build interactive CLI based programs
-- `html2text`
+- `html2text`: A tool to remove redundant HTML.
 
 ### How to use it?
 
