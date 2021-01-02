@@ -68,7 +68,20 @@ def wiki_summary(query: str) -> t.Union[str, t.Tuple[str, str, str]]:
     return remove_italics(request["displaytitle"]), request["extract"], request["content_urls"]["desktop"]["page"]
 
 
-def wiki_suggest(query):
+def wiki_suggest(query: str) -> t.Union[str, t.Tuple[str, str, str]]:
+    """
+    Gets the suggestion on basis of the specified article.
+
+    Parameters
+    ----------
+    query: str
+        The article to be used for suggestion.
+
+    Returns
+    -------
+    t.Union[str, t.Tuple[str, str, str]]
+        Returns Title, extract and URL for article, else `"Article not found"` if the article couldn't be found.
+    """
     request = _get_json(f"/page/related/{query}")
 
     if "detail" in request:
