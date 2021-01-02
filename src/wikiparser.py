@@ -46,7 +46,20 @@ def wiki_random_summary() -> t.Tuple[str, str]:
     return remove_italics(request["displaytitle"]), handler.handle(request["extract"]).replace("\n", " ")
 
 
-def wiki_summary(query):
+def wiki_summary(query: str) -> t.Union[str, t.Tuple[str, str, str]]:
+    """
+    Gets the summary of the specified article.
+
+    Parameters
+    ----------
+    query: str
+        The article to be searched for.
+
+    Returns
+    -------
+    t.Union[str, t.Tuple[str, str, str]]
+        Returns Title, extract and URL for article, else `"Article not found"` if the article couldn't be found.
+    """
     request = _get_json(f"/page/summary/{query}?redirect=true")
 
     if "detail" in request:
