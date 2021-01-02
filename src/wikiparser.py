@@ -6,6 +6,7 @@ import requests
 from scraper import _get_json, base_url
 from utils import remove_italics
 
+import typing as t
 from random import choice
 
 handler = html2text.HTML2Text()
@@ -16,13 +17,30 @@ handler.ignore_emphasis = True
 handler.escape_snob = True
 handler.escape_html = True
 
-def wiki_random():
+
+def wiki_random() -> str:
+    """
+    Fetches a random interesting article from wikipedia to read from.
+
+    Returns
+    -------
+    str
+        The random article's title.
+    """
     request = _get_json("/page/random/title")
 
     return remove_italics(request["items"][0]["title"])
 
 
-def wiki_random_summary():
+def wiki_random_summary() -> t.Tuple[str, str]:
+    """
+    Fetches a random article with it's summary.
+
+    Returns
+    -------
+    t.Tuple[str, str]
+        The title and summary of the random article.
+    """
     request = _get_json("/page/random/summary")
 
     return remove_italics(request["displaytitle"]), handler.handle(request["extract"]).replace("\n", " ")
@@ -54,6 +72,7 @@ def pdf_download(query):
         return "No such page found!"
 
     return request.content
+
 
 def on_this_day(year, month, day):
     request = _get_json(f"/feed/featured/{year}/{month}/{day}")
