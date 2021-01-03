@@ -113,7 +113,23 @@ def pdf_download(query: str) -> t.Union[str, bytes]:
     return request.content
 
 
-def on_this_day(year, month, day):
+def on_this_day(year: int, month: int, day: int) -> t.Union[str, t.Tuple[str, str, str]]:
+    """
+    Get the incidents that happened on the specified date.
+    Parameters
+    ----------
+    year: int
+        The year for the incident.
+    month: int
+        The month for the incident.
+    day: int
+        The day for the incident.
+
+    Returns
+    -------
+    t.Union[str, t.Tuple[str, str, str]]
+       Returns Title, extract and URL for article, else `"Article not found"` if the article couldn't be found.
+    """
     request = _get_json(f"/feed/featured/{year}/{month}/{day}")
 
     if "detail" in request:
