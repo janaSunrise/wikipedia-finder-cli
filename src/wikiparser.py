@@ -91,7 +91,20 @@ def wiki_suggest(query: str) -> t.Union[str, t.Tuple[str, str, str]]:
     return remove_italics(page["displaytitle"]), page["extract"], page["content_urls"]["desktop"]["page"]
 
 
-def pdf_download(query):
+def pdf_download(query: str) -> t.Union[str, bytes]:
+    """
+    Get the PDF content of the whole article and save it for reading it anytime.
+
+    Parameters
+    ----------
+    query: str
+        The query / article to search for.
+
+    Returns
+    -------
+    bytes
+        The Byte format of the PDF which is going to be saved.
+    """
     request = requests.get(f"{base_url}/page/pdf/{query}")
 
     if "detail" in request:
