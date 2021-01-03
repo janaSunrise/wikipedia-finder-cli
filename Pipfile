@@ -11,4 +11,4 @@ html2text = "*"
 [dev-packages]
 
 [scripts]
-start = "python src/app.py"
+start = "python -m wikifinder"

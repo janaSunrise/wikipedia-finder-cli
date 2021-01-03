@@ -13,11 +13,7 @@ This is a utility based Wikipedia Command line program, That helps you traverse 
 Execute the following commands to get started:
 ```sh
 pipenv install
-pipenv shell
-
-cd src/
-
-python app.py --help
+pipenv run start
 ```
 
 ### TODOs Planned
