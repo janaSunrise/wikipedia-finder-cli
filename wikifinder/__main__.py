@@ -3,7 +3,7 @@ from textwrap import dedent
 
 from click import echo, group, option
 
-from wikiparser import (
+from wikifinder.wikiparser import (
     wiki_random,
     wiki_random_summary,
     wiki_summary,

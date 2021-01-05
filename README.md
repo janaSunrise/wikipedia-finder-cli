@@ -20,7 +20,7 @@ pipenv run start
 
 - [x] Cover `/feed/featured/{type}/{mm}/{dd}`
 - [ ] Cover `/page/media-list/{title}`
-- [ ] Cover `/page/html/{title}`
+- [x] Cover `/page/html/{title}`
 - [ ] Cover `/page/segments/{title}`
 
 Made by Sunrit Jana with ❤️

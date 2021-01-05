@@ -2,8 +2,8 @@
 import html2text
 import requests
 
-from scraper import _get_json, base_url
-from utils import remove_italics
+from wikifinder.scraper import _get_json, base_url
+from wikifinder.utils import remove_italics
 
 import typing as t
 from random import choice
