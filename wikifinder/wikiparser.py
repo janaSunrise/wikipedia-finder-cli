@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 import html2text
 import requests
 

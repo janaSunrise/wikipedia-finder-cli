@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 def remove_italics(to_parse: str) -> str:
     """
     A utility function for removing the italic HTML tags.
