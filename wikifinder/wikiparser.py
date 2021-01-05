@@ -113,6 +113,27 @@ def pdf_download(query: str) -> t.Union[str, bytes]:
 
 
 def html_download(query: str, redirect: bool, stash: bool, accept_language: str) -> t.Union[str, bytes]:
+    """
+    Get the HTML content of the whole article and save it for reading it anytime.
+
+    Parameters
+    ----------
+    query: str
+        The query / term to search for.
+    redirect: bool
+        If redirect to other site (might return 302)
+    stash: true
+        Whether to temporary stash data-parsoid in order to support transforming the modified content later.
+        If this parameter is set, requests are rate-limited on a per-client basis (max 5 requests per second per client)
+    accept_language: str
+        The desired language variant code for wikis where LanguageConverter is enabled. Example: sr-el for Latin
+        transcription of the Serbian language.
+
+    Returns
+    -------
+    bytes
+        The Byte format of the HTML which is going to be saved.
+    """
     def bool_to_str(expression: bool) -> str:
         return str(expression).lower()
 
