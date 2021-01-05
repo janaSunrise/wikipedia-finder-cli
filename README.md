@@ -18,7 +18,7 @@ pipenv run start
 
 ### TODOs Planned
 
-- [ ] Cover `/feed/onthisday/{type}/{mm}/{dd}`
+- [x] Cover `/feed/featured/{type}/{mm}/{dd}`
 - [ ] Cover `/page/media-list/{title}`
 - [ ] Cover `/page/html/{title}`
 - [ ] Cover `/page/segments/{title}`

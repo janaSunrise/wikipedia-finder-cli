@@ -112,6 +112,25 @@ def pdf_download(query: str) -> t.Union[str, bytes]:
     return request.content
 
 
+def html_download(query: str, redirect: bool, stash: bool, accept_language: str) -> t.Union[str, bytes]:
+    def bool_to_str(expression: bool) -> str:
+        return str(expression).lower()
+
+    headers = {
+        "Accept-Language": accept_language
+    }
+
+    request = requests.get(
+        f"{base_url}/page/html/{query}?redirect={bool_to_str(redirect)}&stash={bool_to_str(stash)}",
+        headers=headers
+    )
+
+    if "detail" in request:
+        return "No such page found!"
+
+    return request.content
+
+
 def on_this_day(year: int, month: int, day: int) -> t.Union[str, t.Tuple[str, str, str]]:
     """
     Get the incidents that happened on the specified date.
