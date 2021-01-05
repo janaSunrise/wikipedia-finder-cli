@@ -9,6 +9,7 @@ from wikiparser import (
     wiki_summary,
     wiki_suggest,
     pdf_download,
+    html_download,
     on_this_day,
 )
 
@@ -75,12 +76,30 @@ def pdf(query: str) -> None:
     res = pdf_download(query)
 
     if isinstance(res, str):
-        echo(f"ERROR OCCURED! {res}")
+        echo(f"ERROR OCCURRED! {res}")
     else:
         with open(f"{query.replace(' ', '_')}.pdf", "wb") as file:
             file.write(res)
 
         echo(f"File saved as {query.replace(' ', '_')}.pdf")
+
+
+@wiki.command(help="Download the HTML for an article by searching it.")
+@option('--query', prompt="The query to search in wikipedia", help="The query to search in wikipedia")
+@option('--language', prompt="The language for the HTML to get.", help="""
+The desired language variant code for wikis where LanguageConverter is enabled. Example: sr-el for Latin
+transcription of the Serbian language.
+""")
+def html(query: str, accept_language: str) -> None:
+    res = html_download(query, redirect=False, stash=False, accept_language=accept_language)
+
+    if isinstance(res, str):
+        echo(f"ERROR OCCURRED! {res}")
+    else:
+        with open(f"{query.replace(' ', '_')}.html", "wb") as file:
+            file.write(res)
+
+        echo(f"File saved as {query.replace(' ', '_')}.html")
 
 
 @wiki.command(help="Get an incident on the specified date using the flags.")
