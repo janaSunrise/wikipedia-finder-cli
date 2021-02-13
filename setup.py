@@ -22,7 +22,7 @@ if not VERSION:
 
 # Setup
 setuptools.setup(
-    name="Wikipedia Finder CLI",
+    name="WikipediaFinderCLI",
     version=VERSION,
 
     author="Sunrit Jana",

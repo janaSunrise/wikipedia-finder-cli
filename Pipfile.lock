@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "da1558cc9835972e9fa18fee3e2b2643200d786b206b2b0392d543b4a5262272"
+            "sha256": "35d1d479ddfdc6935dfc74e2ed54329c2358288e0da57d39c7ae514da6a1d953"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -68,6 +68,10 @@
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4' and python_version < '4'",
             "version": "==1.26.3"
+        },
+        "wikipediafindercli": {
+            "editable": true,
+            "path": "."
         }
     },
     "develop": {

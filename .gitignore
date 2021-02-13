@@ -29,4 +29,5 @@ TODO
 
 # Build and package files
 build/
-ProjectQuickstart.egg-info/
+WikipediaFinderCLI.egg-info/
+dist/
