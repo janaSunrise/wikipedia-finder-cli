@@ -10,17 +10,19 @@ This is a utility based Wikipedia Command line program, That helps you traverse 
 
 ### How to use it?
 
-Execute the following commands to get started:
-```sh
-pipenv install
-pipenv run start
-```
+You can get it from pypi as a console package by using `pip install wikipedia-finder`
+
+or if it doesn't work, you can install it manually by using these steps:
+
+- Clone the repo
+- `cd wikipedia-finder-cli`
+- `python setup.py install`
 
 ### TODOs Planned
 
 - [x] Cover `/feed/featured/{type}/{mm}/{dd}`
-- [ ] Cover `/page/media-list/{title}`
 - [x] Cover `/page/html/{title}`
+- [ ] Cover `/page/media-list/{title}`
 - [ ] Cover `/page/segments/{title}`
 
 Made by Sunrit Jana with ❤️

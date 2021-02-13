@@ -3,12 +3,19 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
-[packages]
-requests = "*"
-click = "*"
-html2text = "*"
-
 [dev-packages]
+flake8 = "*"
+autopep8 = "*"
+pre-commit = "*"
+ipython = "*"
+flake8-annotations = "*"
+flake8-bugbear = "*"
+
+[packages]
+requests = "==2.25.1"
+click = "==7.1.2"
+html2text = "==2020.1.16"
 
 [scripts]
-start = "python -m wikifinder"
+lint = "pre-commit run --all-files"
+precommit = "pre-commit install"

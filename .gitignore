@@ -1,12 +1,32 @@
-.env
-TODO
+# Ignore python cache
+__pycache__/
 
+# virtualenv
+env/
+venv/
+.venv
+
+# Tests cache
+.pytest_cache/
+
+# Vscode settings
 .vscode/
-.idea/
+
+# Ignore intellij Files (PyCharm)
+.idea
+
+# Ignore spyder Files
 .spyproject/
 
-*.db
-*.sqlite
-*.sqlite3
+# Ignore ds store files
+.DS_STORE
 
-__pycache__
+# Backup files
+*.bak
+
+# Personal TODO files
+TODO
+
+# Build and package files
+build/
+ProjectQuickstart.egg-info/
