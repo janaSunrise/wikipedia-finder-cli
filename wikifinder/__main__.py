@@ -13,9 +13,15 @@ from wikifinder.wikiparser import (
     on_this_day,
 )
 
+CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 
-@group()
+
+@group(context_settings=CONTEXT_SETTINGS)
 def wiki() -> None:
+    """
+    A wikipedia finder CLI designed for people to fetch an article, read something specific, get suggestions and
+    more without visiting wikipedia and spending time.
+    """
     pass
 
 
