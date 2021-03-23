@@ -6,6 +6,7 @@ __all__ = (
     "wiki_random_summary",
     "pdf_download",
     "html_download",
+    "featured_on_this_day",
     "on_this_day",
 )
 
@@ -189,7 +190,7 @@ def featured_on_this_day(year: int, month: int, day: int) -> t.Union[str, t.Tupl
     return remove_italics(page["displaytitle"]), page["extract"], page["content_urls"]["desktop"]["page"]
 
 
-def on_this_day(type: str, month: int, day: int) -> t.Union[str, t.Tuple[str, str, str]]:
+def on_this_day(type: str, month: int, day: int) -> t.Union[str, t.Tuple[str, int, str, str, str]]:
     """
     Get the incidents that happened on the specified date.
     Parameters
@@ -211,6 +212,7 @@ def on_this_day(type: str, month: int, day: int) -> t.Union[str, t.Tuple[str, st
     if "detail" in request:
         return request["detail"]
 
-    page = choice(request["onthisday"][0]["pages"])
+    page = choice(request["selected"])
 
-    return remove_italics(page["displaytitle"]), page["extract"], page["content_urls"]["desktop"]["page"]
+    return remove_italics(page["text"]), page["year"], (page["pages"][0]["displaytitle"]), \
+           page["pages"][0]["extract"], page["pages"][0]["content_urls"]["desktop"]["page"]  # noqa: E127

@@ -138,11 +138,11 @@ def onthisday(month: int, day: int) -> None:
     if isinstance(res, str):
         echo(f"ERROR OCCURED! {res}")
     else:
-        title, summary_, link = res
+        title, year, topic, summary_, link = res
         echo(
             dedent(f"""
-            {title}\n
+            {title} | year: {year}\nTopic: {topic}
             {summary_}\n
             Read more here: {link}
-            """)
+            """)  # noqa: W291
         )
