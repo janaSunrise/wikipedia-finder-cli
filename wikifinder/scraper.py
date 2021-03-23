@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 import requests
 
+__all__ = (
+    "_get_json"
+)
+
 lang = "en"
 base_url = f"https://{lang}.wikipedia.org/api/rest_v1"
 

@@ -29,11 +29,11 @@ def wiki() -> None:
 @option('--summary', is_flag=True, help="Get the summary of the random article along with title")
 def random(summary: str) -> None:
     if summary:
-        title, summary = wiki_random_summary()
+        title, summary_ = wiki_random_summary()
         echo(
             dedent(f"""
             Here's a Random interesting topic: {title}\n
-            {summary}
+            {summary_}
             """)
         )
     else:
@@ -48,11 +48,11 @@ def summary(query: str) -> None:
     if isinstance(res, str):
         echo(f"ERROR OCCURED! {res}")
     else:
-        title, summary, link = res
+        title, summary_, link = res
         echo(
             dedent(f"""
             {title}\n
-            {summary}\n
+            {summary_}\n
             Read more here: {link}
             """)
         )
@@ -66,11 +66,11 @@ def suggestion(query: str) -> None:
     if isinstance(res, str):
         echo(f"ERROR OCCURED! {res}")
     else:
-        title, summary, link = res
+        title, summary_, link = res
         echo(
             dedent(f"""
             {title}\n
-            {summary}\n
+            {summary_}\n
             Read more here: {link}
             """)
         )
@@ -118,11 +118,11 @@ def onthisday(year: int, month: int, day: int) -> None:
     if isinstance(res, str):
         echo(f"ERROR OCCURED! {res}")
     else:
-        title, summary, link = res
+        title, summary_, link = res
         echo(
             dedent(f"""
             {title}\n
-            {summary}\n
+            {summary_}\n
             Read more here: {link}
             """)
         )

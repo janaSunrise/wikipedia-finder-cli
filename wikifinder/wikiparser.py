@@ -1,4 +1,14 @@
 #!/usr/bin/env python3
+__all__ = (
+    "wiki_random",
+    "wiki_suggest",
+    "wiki_summary",
+    "wiki_random_summary",
+    "pdf_download",
+    "html_download",
+    "on_this_day",
+)
+
 import html2text
 import requests
 
