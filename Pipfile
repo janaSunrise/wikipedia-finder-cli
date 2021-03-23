@@ -16,6 +16,7 @@ wikipediafindercli = {editable = true, path = "."}
 requests = "==2.25.1"
 click = "==7.1.2"
 html2text = "==2020.1.16"
+colorama = "==0.4.4"
 
 [scripts]
 lint = "pre-commit run --all-files"

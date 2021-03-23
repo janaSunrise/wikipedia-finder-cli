@@ -50,7 +50,8 @@ setuptools.setup(
     install_requires=[
         "requests==2.25.1",
         "click==7.1.2",
-        "html2text==2020.1.16"
+        "html2text==2020.1.16",
+        "colorama==0.4.4"
     ],
 
     classifiers=[
