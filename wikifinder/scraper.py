@@ -23,4 +23,7 @@ def _get_json(url: str) -> dict:
     dict
         The JSON response from the endpoint.
     """
-    return requests.get(base_url + url).json()
+    headers = {
+        "User-Agent": "Library(github.com/janaSunrise/wikipedia-finder-cli) User"
+    }
+    return requests.get(base_url + url, headers=headers).json()

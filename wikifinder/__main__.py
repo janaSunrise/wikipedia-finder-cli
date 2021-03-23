@@ -10,6 +10,7 @@ from wikifinder.wikiparser import (
     wiki_suggest,
     pdf_download,
     html_download,
+    featured_on_this_day,
     on_this_day,
 )
 
@@ -108,12 +109,31 @@ def html(query: str, accept_language: str) -> None:
         echo(f"File saved as {query.replace(' ', '_')}.html")
 
 
-@wiki.command(help="Get an incident on the specified date using the flags.")
+@wiki.command(help="Get an featured incident on the specified date using the flags.")
 @option('--year', type=int, prompt="The year of the incident", help="The year of the incident to be searched")
 @option('--month', type=int, prompt="The month of the incident", help="The month of the incident to be searched")
 @option('--day', type=int, prompt="The day of the incident", help="The day of the incident to be searched")
-def onthisday(year: int, month: int, day: int) -> None:
-    res = on_this_day(year, month, day)
+def featuredonthisday(year: int, month: int, day: int) -> None:
+    res = featured_on_this_day(year, month, day)
+
+    if isinstance(res, str):
+        echo(f"ERROR OCCURED! {res}")
+    else:
+        title, summary_, link = res
+        echo(
+            dedent(f"""
+            {title}\n
+            {summary_}\n
+            Read more here: {link}
+            """)
+        )
+
+
+@wiki.command(help="Get an incident on the specified date using the flags.")
+@option('--month', type=int, prompt="The month of the incident", help="The month of the incident to be searched")
+@option('--day', type=int, prompt="The day of the incident", help="The day of the incident to be searched")
+def onthisday(month: int, day: int) -> None:
+    res = on_this_day("all", month, day)
 
     if isinstance(res, str):
         echo(f"ERROR OCCURED! {res}")

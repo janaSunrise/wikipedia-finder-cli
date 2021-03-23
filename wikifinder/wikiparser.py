@@ -162,9 +162,9 @@ def html_download(query: str, redirect: bool, stash: bool, accept_language: str)
     return request.content
 
 
-def on_this_day(year: int, month: int, day: int) -> t.Union[str, t.Tuple[str, str, str]]:
+def featured_on_this_day(year: int, month: int, day: int) -> t.Union[str, t.Tuple[str, str, str]]:
     """
-    Get the incidents that happened on the specified date.
+    Get the featured incidents that happened on the specified date.
     Parameters
     ----------
     year: int
@@ -180,6 +180,33 @@ def on_this_day(year: int, month: int, day: int) -> t.Union[str, t.Tuple[str, st
        Returns Title, extract and URL for article, else `"Article not found"` if the article couldn't be found.
     """
     request = _get_json(f"/feed/featured/{year}/{month}/{day}")
+
+    if "detail" in request:
+        return request["detail"]
+
+    page = choice(request["onthisday"][0]["pages"])
+
+    return remove_italics(page["displaytitle"]), page["extract"], page["content_urls"]["desktop"]["page"]
+
+
+def on_this_day(type: str, month: int, day: int) -> t.Union[str, t.Tuple[str, str, str]]:
+    """
+    Get the incidents that happened on the specified date.
+    Parameters
+    ----------
+    type: str
+        Type of the incident
+    month: int
+        The month for the incident.
+    day: int
+        The day for the incident.
+
+    Returns
+    -------
+    t.Union[str, t.Tuple[str, str, str]]
+       Returns Title, extract and URL for article, else `"Article not found"` if the article couldn't be found.
+    """
+    request = _get_json(f"/feed/onthisday/{type}/{month}/{day}")
 
     if "detail" in request:
         return request["detail"]
